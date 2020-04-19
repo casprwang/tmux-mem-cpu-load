@@ -45,7 +45,7 @@ std::string cpu_string( CPU_MODE cpu_mode, unsigned int cpu_usage_delay, unsigne
 
   //output stuff
   std::ostringstream oss;
-  oss.precision( 1 );
+  oss.precision( 0 );
   oss.setf( std::ios::fixed | std::ios::right );
 
   // get %
@@ -80,13 +80,15 @@ std::string cpu_string( CPU_MODE cpu_mode, unsigned int cpu_usage_delay, unsigne
     }
   }
 
+  oss.width( 1 );
   if( graph_lines > 0)
   {
     oss << " [";
     oss << get_graph_by_percentage( unsigned( percentage ), graph_lines );
     oss << "]";
   }
-  oss.width( 5 );
+  oss << " ";
+  if ( percent < 10 ) oss << '0';
   oss << percentage * multiplier;
   oss << "%";
   if( use_colors )

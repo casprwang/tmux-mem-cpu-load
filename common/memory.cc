@@ -31,8 +31,9 @@ std::string mem_string( const MemoryStatus & mem_status,
 {
   std::ostringstream oss;
   // Change the percision for floats, for a pretty output
-  oss.precision( 2 );
+  oss.precision( 0 );
   oss.setf( std::ios::fixed | std::ios::right );
+  oss.width( 2 );
 
   unsigned int color = static_cast< unsigned int >((100 * mem_status.used_mem) / mem_status.total_mem);
   if( use_colors )
@@ -41,7 +42,6 @@ std::string mem_string( const MemoryStatus & mem_status,
     {
       oss << "#[bg=default]";
       powerline( oss, mem_lut[color], POWERLINE_RIGHT );
-      oss << ' ';
     }
     else if( use_powerline_left )
     {
