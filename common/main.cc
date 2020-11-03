@@ -90,7 +90,6 @@ std::string cpu_string( CPU_MODE cpu_mode, unsigned int cpu_usage_delay, unsigne
   oss << " ";
   if ( percent < 10 ) oss << '0';
   oss << percentage * multiplier;
-  oss << "%";
   if( use_colors )
   {
     if( use_powerline_left )
